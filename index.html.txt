@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Valentine</title>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #ffe6eb;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+    }
+
+    .card {
+        background: white;
+        padding: 25px;
+        border-radius: 15px;
+        text-align: center;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        position: relative;
+        width: 350px;
+    }
+
+    img {
+        width: 100%;
+        border-radius: 10px;
+        margin-bottom: 15px;
+    }
+
+    h2 {
+        color: #b3003b;
+    }
+
+    button {
+        padding: 12px 25px;
+        border: none;
+        border-radius: 25px;
+        font-size: 16px;
+        cursor: pointer;
+        margin: 10px;
+        transition: 0.2s;
+    }
+
+    #yesBtn {
+        background: #ff4d6d;
+        color: white;
+    }
+
+    #noBtn {
+        background: white;
+        color: #ff4d6d;
+        border: 2px solid #ff4d6d;
+        position: absolute;
+        right: 40px;
+        top: 250px;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="card">
+    <img src="bg.jpg" alt="Valentine Photo">
+
+    <h2>Will you be my Valentine? ❤️</h2>
+
+    <button id="yesBtn" onclick="yesClicked()">Yes 🌹</button>
+    <button id="noBtn">No 🙅‍♂️</button>
+</div>
+
+<script>
+    const noBtn = document.getElementById("noBtn");
+
+    document.addEventListener("mousemove", (e) => {
+
+        const rect = noBtn.getBoundingClientRect();
+
+        const distance = Math.hypot(
+            e.clientX - (rect.left + rect.width / 2),
+            e.clientY - (rect.top + rect.height / 2)
+        );
+
+        if (distance < 140) {
+            const maxX = window.innerWidth - 120;
+            const maxY = window.innerHeight - 60;
+
+            noBtn.style.position = "fixed";
+            noBtn.style.left = Math.random() * maxX + "px";
+            noBtn.style.top = Math.random() * maxY + "px";
+        }
+    });
+
+    function yesClicked() {
+        alert("Yay! ❤️ Love you!");
+    }
+</script>
+
+</body>
+</html>
