@@ -14,6 +14,7 @@
         align-items: center;
         height: 100vh;
         margin: 0;
+        overflow: hidden;
     }
 
     .card {
@@ -55,9 +56,7 @@
         background: white;
         color: #ff4d6d;
         border: 2px solid #ff4d6d;
-        position: absolute;
-        right: 40px;
-        top: 250px;
+        position: relative;
     }
 </style>
 </head>
@@ -74,30 +73,31 @@
 </div>
 
 <script>
-    const noBtn = document.getElementById("noBtn");
+const noBtn = document.getElementById("noBtn");
 
-    document.addEventListener("mousemove", (e) => {
+document.addEventListener("mousemove", (e) => {
 
-        const rect = noBtn.getBoundingClientRect();
+    const rect = noBtn.getBoundingClientRect();
 
-        const distance = Math.hypot(
-            e.clientX - (rect.left + rect.width / 2),
-            e.clientY - (rect.top + rect.height / 2)
-        );
+    const distance = Math.hypot(
+        e.clientX - (rect.left + rect.width / 2),
+        e.clientY - (rect.top + rect.height / 2)
+    );
 
-        if (distance < 140) {
-            const maxX = window.innerWidth - 120;
-            const maxY = window.innerHeight - 60;
+    if (distance < 120) {
 
-            noBtn.style.position = "fixed";
-            noBtn.style.left = Math.random() * maxX + "px";
-            noBtn.style.top = Math.random() * maxY + "px";
-        }
-    });
+        const maxX = window.innerWidth - noBtn.offsetWidth;
+        const maxY = window.innerHeight - noBtn.offsetHeight;
 
-    function yesClicked() {
-        alert("Yay! ❤️ Love you!");
+        noBtn.style.position = "fixed";
+        noBtn.style.left = Math.random() * maxX + "px";
+        noBtn.style.top = Math.random() * maxY + "px";
     }
+});
+
+function yesClicked() {
+    alert("Yay! ❤️ Love you!");
+}
 </script>
 
 </body>
